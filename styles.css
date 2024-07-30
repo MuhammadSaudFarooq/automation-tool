@@ -1,3 +1,131 @@
 /* styles.css */
 
 /* Add styles here to customize the appearance of your app */
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Regular.ttf");
+}
+
+:root {
+  --font: "Poppins", "Arial", sans-serif;
+}
+
+body {
+  font-family: var(--font);
+}
+
+.container {
+  width: 100%;
+}
+
+.container .row {
+  width: 100%;
+  margin: 5em auto 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+#automation-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#automation-form input {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 18px;
+  font-family: var(--font);
+  border-radius: 5px;
+  border: 1px solid rgb(255 255 255 / 50%);
+  box-shadow: 0px 1px 5px 2px rgb(0 0 0 / 20%);
+}
+
+#automation-form input.invalid {
+  border: 1px solid rgb(255 0 0 / 70%);
+}
+
+#automation-form input:focus-visible {
+  outline: 0;
+}
+
+.error-msg {
+  display: block;
+  text-align: left;
+  color: rgb(255 0 0 / 70%);
+}
+
+/* Preloader */
+.preloader-wrap,
+.preloader-wrap div {
+  box-sizing: border-box;
+}
+
+.preloader-wrap {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.preloader-wrap div {
+  position: absolute;
+  top: 33.33333px;
+  width: 13.33333px;
+  height: 13.33333px;
+  border-radius: 50%;
+  background: currentColor;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.preloader-wrap div:nth-child(1) {
+  left: 8px;
+  animation: animation1 0.6s infinite;
+}
+
+.preloader-wrap div:nth-child(2) {
+  left: 8px;
+  animation: animation2 0.6s infinite;
+}
+
+.preloader-wrap div:nth-child(3) {
+  left: 32px;
+  animation: animation2 0.6s infinite;
+}
+
+.preloader-wrap div:nth-child(4) {
+  left: 56px;
+  animation: animation3 0.6s infinite;
+}
+
+@keyframes animation1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes animation3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes animation2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(24px, 0);
+  }
+}

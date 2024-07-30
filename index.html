@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-    <link href="./styles.css" rel="stylesheet">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"> -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; connect-src 'self' https://www.googleapis.com;"
+    />
+    <link href="./styles.css" rel="stylesheet" />
     <title>Automation Tool</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <div class="container" id="automation-tool">
+      <div class="row">
+        <div>
+          <h1>Automation Tool</h1>
+        </div>
+        <form
+          id="automation-form"
+          action="#"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input type="url" value="" placeholder="Enter webiste URL here..." />
+        </form>
+      </div>
+    </div>
 
     <!-- You can also require other files to run in this process -->
+    <script src="./jQuery.min.js"></script>
     <script src="./renderer.js"></script>
   </body>
 </html>
