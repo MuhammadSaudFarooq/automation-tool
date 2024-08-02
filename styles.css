@@ -42,7 +42,7 @@ h1 {
 
 #automation-form input {
   position: relative;
-  width: 100%;
+  width: 98%;
   padding: 15px 10px;
   font-size: 18px;
   font-family: var(--font);
@@ -70,6 +70,13 @@ h1 {
 }
 
 /* Preloader */
+.preloader>div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .preloader-wrap,
 .preloader-wrap div {
   box-sizing: border-box;
@@ -146,8 +153,12 @@ h1 {
 .main_center_box {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-top: 40px;
+  box-shadow: 0 0 5px 1px rgb(0 0 0 / 20%);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .score_text {
@@ -411,7 +422,7 @@ h1 {
   font-size: 80px;
 }
 
-.c100 > span {
+.c100>span {
   position: absolute;
   width: 100%;
   z-index: 1;
@@ -1265,7 +1276,7 @@ h1 {
   border-color: #c6ff00 !important;
 }
 
-.c100.dark > span {
+.c100.dark>span {
   color: #777;
 }
 
@@ -1273,7 +1284,7 @@ h1 {
   background-color: #666;
 }
 
-.c100.dark:hover > span {
+.c100.dark:hover>span {
   color: #c6ff00;
 }
 
@@ -1282,7 +1293,7 @@ h1 {
   border-color: #4db53c !important;
 }
 
-.c100.green:hover > span {
+.c100.green:hover>span {
   color: #4db53c;
 }
 
@@ -1291,7 +1302,7 @@ h1 {
   border-color: #5fd400 !important;
 }
 
-.c100.green.dark:hover > span {
+.c100.green.dark:hover>span {
   color: #5fd400;
 }
 
@@ -1300,7 +1311,7 @@ h1 {
   border-color: #dd9d22 !important;
 }
 
-.c100.orange:hover > span {
+.c100.orange:hover>span {
   color: #dd9d22;
 }
 
@@ -1309,7 +1320,7 @@ h1 {
   border-color: #e08833 !important;
 }
 
-.c100.orange.dark:hover > span {
+.c100.orange.dark:hover>span {
   color: #e08833;
 }
 
@@ -1899,7 +1910,7 @@ h1 {
   border: 0.03em solid #235171 !important;
 }
 
-.c100.blue > span {
+.c100.blue>span {
   color: #235171 !important;
 }
 
@@ -1920,7 +1931,7 @@ h1 {
   content: "";
   position: absolute;
   border-radius: 50%;
-  border: 0.02em solid #efeff6 !important;
+  border: 0.02em solid transparent !important;
   background-color: attr(data-bg);
   left: 0px;
   right: 0;
@@ -1932,56 +1943,56 @@ h1 {
 }
 
 /* Poor */
-.p0 > span,
-.p1 > span,
-.p2 > span,
-.p3 > span,
-.p4 > span,
-.p5 > span,
-.p6 > span,
-.p7 > span,
-.p8 > span,
-.p9 > span,
-.p10 > span,
-.p11 > span,
-.p12 > span,
-.p13 > span,
-.p14 > span,
-.p15 > span,
-.p16 > span,
-.p17 > span,
-.p18 > span,
-.p19 > span,
-.p20 > span,
-.p21 > span,
-.p22 > span,
-.p23 > span,
-.p24 > span,
-.p25 > span,
-.p26 > span,
-.p27 > span,
-.p28 > span,
-.p29 > span,
-.p30 > span,
-.p31 > span,
-.p32 > span,
-.p33 > span,
-.p34 > span,
-.p35 > span,
-.p36 > span,
-.p37 > span,
-.p38 > span,
-.p39 > span,
-.p40 > span,
-.p41 > span,
-.p42 > span,
-.p43 > span,
-.p44 > span,
-.p45 > span,
-.p46 > span,
-.p47 > span,
-.p48 > span,
-.p49 > span {
+.p0>span,
+.p1>span,
+.p2>span,
+.p3>span,
+.p4>span,
+.p5>span,
+.p6>span,
+.p7>span,
+.p8>span,
+.p9>span,
+.p10>span,
+.p11>span,
+.p12>span,
+.p13>span,
+.p14>span,
+.p15>span,
+.p16>span,
+.p17>span,
+.p18>span,
+.p19>span,
+.p20>span,
+.p21>span,
+.p22>span,
+.p23>span,
+.p24>span,
+.p25>span,
+.p26>span,
+.p27>span,
+.p28>span,
+.p29>span,
+.p30>span,
+.p31>span,
+.p32>span,
+.p33>span,
+.p34>span,
+.p35>span,
+.p36>span,
+.p37>span,
+.p38>span,
+.p39>span,
+.p40>span,
+.p41>span,
+.p42>span,
+.p43>span,
+.p44>span,
+.p45>span,
+.p46>span,
+.p47>span,
+.p48>span,
+.p49>span {
   color: var(--poor);
 }
 
@@ -2088,7 +2099,7 @@ h1 {
 .p47 .fill,
 .p48 .fill,
 .p49 .fill {
-  border: 0.03em solid var(--poor);
+  /* border: 0.03em solid var(--poor) !important; */
 }
 
 .p0 .sl:before,
@@ -2145,46 +2156,46 @@ h1 {
 }
 
 /* Average */
-.p50 > span,
-.p51 > span,
-.p52 > span,
-.p53 > span,
-.p54 > span,
-.p55 > span,
-.p56 > span,
-.p57 > span,
-.p58 > span,
-.p59 > span,
-.p60 > span,
-.p61 > span,
-.p62 > span,
-.p63 > span,
-.p64 > span,
-.p65 > span,
-.p66 > span,
-.p67 > span,
-.p68 > span,
-.p69 > span,
-.p70 > span,
-.p71 > span,
-.p72 > span,
-.p73 > span,
-.p74 > span,
-.p75 > span,
-.p76 > span,
-.p77 > span,
-.p78 > span,
-.p79 > span,
-.p80 > span,
-.p81 > span,
-.p82 > span,
-.p83 > span,
-.p84 > span,
-.p85 > span,
-.p86 > span,
-.p87 > span,
-.p88 > span,
-.p89 > span {
+.p50>span,
+.p51>span,
+.p52>span,
+.p53>span,
+.p54>span,
+.p55>span,
+.p56>span,
+.p57>span,
+.p58>span,
+.p59>span,
+.p60>span,
+.p61>span,
+.p62>span,
+.p63>span,
+.p64>span,
+.p65>span,
+.p66>span,
+.p67>span,
+.p68>span,
+.p69>span,
+.p70>span,
+.p71>span,
+.p72>span,
+.p73>span,
+.p74>span,
+.p75>span,
+.p76>span,
+.p77>span,
+.p78>span,
+.p79>span,
+.p80>span,
+.p81>span,
+.p82>span,
+.p83>span,
+.p84>span,
+.p85>span,
+.p86>span,
+.p87>span,
+.p88>span,
+.p89>span {
   color: var(--average);
 }
 
@@ -2271,7 +2282,7 @@ h1 {
 .p87 .fill,
 .p88 .fill,
 .p89 .fill {
-  border: 0.03em solid var(--average);
+  border: 0.03em solid var(--average) !important;
 }
 
 .p50 .sl:before,
@@ -2318,17 +2329,17 @@ h1 {
 }
 
 /* Good */
-.p90 > span,
-.p91 > span,
-.p92 > span,
-.p93 > span,
-.p94 > span,
-.p95 > span,
-.p96 > span,
-.p97 > span,
-.p98 > span,
-.p99 > span,
-.p100 > span {
+.p90>span,
+.p91>span,
+.p92>span,
+.p93>span,
+.p94>span,
+.p95>span,
+.p96>span,
+.p97>span,
+.p98>span,
+.p99>span,
+.p100>span {
   color: var(--good);
 }
 
@@ -2357,7 +2368,7 @@ h1 {
 .p98 .fill,
 .p99 .fill,
 .p100 .fill {
-  border: 0.03em solid var(--good);
+  border: 0.03em solid var(--good) !important;
 }
 
 .p90 .sl:before,

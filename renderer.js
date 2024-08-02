@@ -7,14 +7,38 @@
  */
 
 $(document).ready(function () {
+
+    /* $.ajax({
+        url: 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://commubridge.com/&screenshot=true',
+        type: 'GET',
+        dataType: 'json',
+        timeout: 60000,
+        success: function (result) {
+            console.log('API Response:', result);
+            if (result.lighthouseResult && result.lighthouseResult.audits && result.lighthouseResult.audits['final-screenshot']) {
+                var imgData = result.lighthouseResult.audits['final-screenshot'].details.data;
+                console.log('Image Data:', imgData);
+                // $("#ss_img").attr('src', imgData);
+                $(`<img src="${imgData}" />`).insertAfter($("#imagePreview"));
+            } else {
+                console.log('Screenshot data not available in the response');
+            }
+        },
+        error: function (e) {
+            console.log("Error to fetch image preview.", e);
+        }
+    }); */
+
     $('#automation-form').submit(function (e) {
         e.preventDefault();
         let _this = $(this);
         let form_input = _this.find('input');
         let website = form_input.val();
-        let pattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,6})(\/[a-zA-Z0-9#-\/]*)?$/;
-        let preloader = `<div class="preloader"><div><div class="preloader-wrap"><div></div><div></div><div></div><div></div></div></div></div>`;
+        // let pattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,6})(\/[a-zA-Z0-9#-\/]*)?$/;
+        let pattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+(com|net|edu|gov|co|io|us)(\/[a-zA-Z0-9#-\/]*)?$/;
+        let preloader = `<div class="preloader"><div><span>Running Analysis</span><div class="preloader-wrap"><div></div><div></div><div></div><div></div></div></div></div>`;
 
+        $('.performance-result .main_center_box').remove();
 
         if (pattern.test(website)) {
             let strategy = 'desktop';
@@ -30,10 +54,19 @@ $(document).ready(function () {
                     $(preloader).insertAfter(form_input);
                     $(form_input).attr('disabled', 'disabled');
                 },
-                success: function (res) {
+                success: function (desktop_res) {
                     let strategy = 'mobile';
-                    let desktop_result = res.lighthouseResult.categories.performance.score;
+                    let desktop_result = desktop_res.lighthouseResult.categories.performance.score;
+                    let desktop_img_data = '';
                     desktop_result = Math.trunc(desktop_result * 100);
+
+                    // Desktop Screenshot
+                    if (desktop_res.lighthouseResult && desktop_res.lighthouseResult.audits && desktop_res.lighthouseResult.audits['final-screenshot']) {
+                        desktop_img_data = desktop_res.lighthouseResult.audits['final-screenshot'].details.data;
+
+                    } else {
+                        console.log('Desktop Screenshot not available in the response');
+                    }
 
                     $(form_input).removeAttr('disabled');
                     $('.preloader').remove();
@@ -46,59 +79,115 @@ $(document).ready(function () {
                             $(preloader).insertAfter(form_input);
                             $(form_input).attr('disabled', 'disabled');
                         },
-                        success: function (res) {
-                            let mobile_result = res.lighthouseResult.categories.performance.score;
+                        success: function (mobile_res) {
+                            let mobile_img_data = '';
+                            let mobile_result = mobile_res.lighthouseResult.categories.performance.score;
                             mobile_result = Math.trunc(mobile_result * 100);
+
+                            // Mobile Screenshot
+                            if (mobile_res.lighthouseResult && mobile_res.lighthouseResult.audits && mobile_res.lighthouseResult.audits['final-screenshot']) {
+                                mobile_img_data = mobile_res.lighthouseResult.audits['final-screenshot'].details.data;
+
+                            } else {
+                                console.log('Mobile Screenshot not available in the response');
+                            }
 
                             $(form_input).removeAttr('disabled');
                             $('.preloader').remove();
 
-                            // Colors for desktop
-                            let color_desktop = '';
-                            let border_desktop = '';
-                            let bg_desktop = '';
+                            let desktop_template = `<div class="main_center_box">
+                                                        <div class="pro_bar">
+                                                            <div class="prog-1">  
+                                                                <div class="c100 p${desktop_result} big">
+                                                                    <span>${desktop_result}</span>
+                                                                    <div class="sl">
+                                                                        <div class="slice">
+                                                                        <div class="bar"></div>
+                                                                        <div class="fill"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <h3 class="score_text">Dektop</h3>
+                                                        </div>
+                                                        <div class="desktop-img">
+                                                            <img src='${desktop_img_data}' alt='Desktop Screenshot' />
+                                                        </div>
+                                                    </div>`;
+                            let mobile_template = `<div class="main_center_box">
+                                                        <div class="pro_bar">
+                                                            <div class="prog-1">  
+                                                                <div class="c100 p${mobile_result} big">
+                                                                    <span>${mobile_result}</span>
+                                                                    <div class="sl">
+                                                                        <div class="slice">
+                                                                        <div class="bar"></div>
+                                                                        <div class="fill"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <h3 class="score_text">Mobile</h3>
+                                                        </div>
+                                                        <div class="mobile-img">
+                                                            <img src='${mobile_img_data}' alt='Desktop Screenshot' />
+                                                        </div>
+                                                    </div>`;
 
-                            if (desktop_result >= 90 && desktop_result <= 100) {
-                                color_desktop = 'var(--good)';
-                                border_desktop = 'var(--good)';
-                                bg_desktop = 'var(--good-bg)';
-                            }
-                            else if (desktop_result >= 50 && desktop_result <= 89) {
-                                color_desktop = 'var(--average)';
-                                border_desktop = 'var(--average)';
-                                bg_desktop = 'var(--average-bg)';
-                            }
+                            // Render Result
+                            $('.performance-result').append(desktop_template, mobile_template);
+                        },
+                        error: function (error) {
+                            let mobile_result = 0;
+                            let mobile_img_data = './images/mobile-placeholder.png';
+
+                            $(form_input).removeAttr('disabled');
+                            $('.preloader').remove();
+
+                            if (error.status >= 200 && error.status < 300) { }
                             else {
-                                color_desktop = 'var(--poor)';
-                                border_desktop = 'var(--poor)';
-                                bg_desktop = 'var(--poor-bg)';
-                            }
+                                let mobile_template = `<div class="main_center_box">
+                                                            <div class="pro_bar">
+                                                                <div class="prog-1">  
+                                                                    <div class="c100 p${mobile_result} big">
+                                                                        <span>!</span>
+                                                                        <div class="sl">
+                                                                            <div class="slice">
+                                                                            <div class="bar"></div>
+                                                                            <div class="fill"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <h3 class="score_text">Mobile</h3>
+                                                            </div>
+                                                            <div class="mobile-img">
+                                                                <img src='${mobile_img_data}' alt='Desktop Screenshot' />
+                                                            </div>
+                                                        </div>`;
 
-                            // Colors for mobile
-                            let color_mobile = '';
-                            let border_mobile = '';
-                            let bg_mobile = '';
+                                // Render Result
+                                $('.performance-result').append(mobile_template);
+                            }
+                        }
+                    });
+                },
+                error: function (error) {
+                    let desktop_result = 0;
+                    let mobile_result = 0;
+                    let desktop_img_data = './images/desktop-placeholder.png';
+                    let mobile_img_data = './images/mobile-placeholder.png';
 
-                            if (mobile_result >= 90 && mobile_result <= 100) {
-                                color_mobile = 'var(--good)';
-                                border_mobile = 'var(--good)';
-                                bg_mobile = 'var(--good-bg)';
-                            }
-                            else if (mobile_result >= 50 && mobile_result <= 89) {
-                                color_mobile = 'var(--average)';
-                                border_mobile = 'var(--average)';
-                                bg_mobile = 'var(--average-bg)';
-                            }
-                            else {
-                                color_mobile = 'var(--poor)';
-                                border_mobile = 'var(--poor)';
-                                bg_mobile = 'var(--poor-bg)';
-                            }
+                    $(form_input).removeAttr('disabled');
+                    $('.preloader').remove();
 
-                            let desktop_template = `<div class="pro_bar">
+                    if (error.status >= 200 && error.status < 300) { }
+                    else {
+                        let desktop_template = `<div class="main_center_box">
+                                                    <div class="pro_bar">
                                                         <div class="prog-1">  
                                                             <div class="c100 p${desktop_result} big">
-                                                                <span>${desktop_result}</span>
+                                                                <span>!</span>
                                                                 <div class="sl">
                                                                     <div class="slice">
                                                                     <div class="bar"></div>
@@ -108,11 +197,16 @@ $(document).ready(function () {
                                                             </div>
                                                         </div>
                                                         <h3 class="score_text">Dektop</h3>
-                                                    </div>`;
-                            let mobile_template = `<div class="pro_bar">
+                                                    </div>
+                                                    <div class="desktop-img">
+                                                        <img src='${desktop_img_data}' alt='Desktop Screenshot' />
+                                                    </div>
+                                                </div>`;
+                        let mobile_template = `<div class="main_center_box">
+                                                    <div class="pro_bar">
                                                         <div class="prog-1">  
                                                             <div class="c100 p${mobile_result} big">
-                                                                <span>${mobile_result}</span>
+                                                                <span>!</span>
                                                                 <div class="sl">
                                                                     <div class="slice">
                                                                     <div class="bar"></div>
@@ -122,26 +216,21 @@ $(document).ready(function () {
                                                             </div>
                                                         </div>
                                                         <h3 class="score_text">Mobile</h3>
-                                                    </div>`;
+                                                    </div>
+                                                    <div class="mobile-img">
+                                                        <img src='${mobile_img_data}' alt='Desktop Screenshot' />
+                                                    </div>
+                                                </div>`;
 
-                            $('.main_center_box').append(mobile_template);
-                            $('.main_center_box').append(desktop_template);
-                        },
-                        error: function (error) {
-                            $(form_input).removeAttr('disabled');
-                            $('.preloader').remove();
-                            console.error('Mobile Error:', error);
-                        }
-                    });
-                },
-                error: function (error) {
-                    $(form_input).removeAttr('disabled');
-                    $('.preloader').remove();
-                    console.error('Desktop Error:', error);
+                        // Render Result
+                        $('.performance-result').append(desktop_template, mobile_template);
+                    }
+
                 }
             });
         } else {
             form_input.addClass('invalid');
+            $('.error-msg').remove();
             $(`<span class="error-msg">Invalid URL</span>`).insertAfter(form_input);
         }
     });
@@ -149,6 +238,6 @@ $(document).ready(function () {
 
 // Functions
 let pageInsightUrl = (website, strategy) => {
-    let url = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${website}&strategy=${strategy}&category=performance&category=accessibility`;
+    let url = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${website}&strategy=${strategy}&category=performance&category=accessibility&screenshot=true`;
     return url;
 }
