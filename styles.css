@@ -70,7 +70,7 @@ h1 {
 }
 
 /* Preloader */
-.preloader>div {
+.preloader > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -422,7 +422,7 @@ h1 {
   font-size: 80px;
 }
 
-.c100>span {
+.c100 > span {
   position: absolute;
   width: 100%;
   z-index: 1;
@@ -1276,7 +1276,7 @@ h1 {
   border-color: #c6ff00 !important;
 }
 
-.c100.dark>span {
+.c100.dark > span {
   color: #777;
 }
 
@@ -1284,7 +1284,7 @@ h1 {
   background-color: #666;
 }
 
-.c100.dark:hover>span {
+.c100.dark:hover > span {
   color: #c6ff00;
 }
 
@@ -1293,7 +1293,7 @@ h1 {
   border-color: #4db53c !important;
 }
 
-.c100.green:hover>span {
+.c100.green:hover > span {
   color: #4db53c;
 }
 
@@ -1302,7 +1302,7 @@ h1 {
   border-color: #5fd400 !important;
 }
 
-.c100.green.dark:hover>span {
+.c100.green.dark:hover > span {
   color: #5fd400;
 }
 
@@ -1311,7 +1311,7 @@ h1 {
   border-color: #dd9d22 !important;
 }
 
-.c100.orange:hover>span {
+.c100.orange:hover > span {
   color: #dd9d22;
 }
 
@@ -1320,7 +1320,7 @@ h1 {
   border-color: #e08833 !important;
 }
 
-.c100.orange.dark:hover>span {
+.c100.orange.dark:hover > span {
   color: #e08833;
 }
 
@@ -1910,7 +1910,7 @@ h1 {
   border: 0.03em solid #235171 !important;
 }
 
-.c100.blue>span {
+.c100.blue > span {
   color: #235171 !important;
 }
 
@@ -1943,56 +1943,56 @@ h1 {
 }
 
 /* Poor */
-.p0>span,
-.p1>span,
-.p2>span,
-.p3>span,
-.p4>span,
-.p5>span,
-.p6>span,
-.p7>span,
-.p8>span,
-.p9>span,
-.p10>span,
-.p11>span,
-.p12>span,
-.p13>span,
-.p14>span,
-.p15>span,
-.p16>span,
-.p17>span,
-.p18>span,
-.p19>span,
-.p20>span,
-.p21>span,
-.p22>span,
-.p23>span,
-.p24>span,
-.p25>span,
-.p26>span,
-.p27>span,
-.p28>span,
-.p29>span,
-.p30>span,
-.p31>span,
-.p32>span,
-.p33>span,
-.p34>span,
-.p35>span,
-.p36>span,
-.p37>span,
-.p38>span,
-.p39>span,
-.p40>span,
-.p41>span,
-.p42>span,
-.p43>span,
-.p44>span,
-.p45>span,
-.p46>span,
-.p47>span,
-.p48>span,
-.p49>span {
+.p0 > span,
+.p1 > span,
+.p2 > span,
+.p3 > span,
+.p4 > span,
+.p5 > span,
+.p6 > span,
+.p7 > span,
+.p8 > span,
+.p9 > span,
+.p10 > span,
+.p11 > span,
+.p12 > span,
+.p13 > span,
+.p14 > span,
+.p15 > span,
+.p16 > span,
+.p17 > span,
+.p18 > span,
+.p19 > span,
+.p20 > span,
+.p21 > span,
+.p22 > span,
+.p23 > span,
+.p24 > span,
+.p25 > span,
+.p26 > span,
+.p27 > span,
+.p28 > span,
+.p29 > span,
+.p30 > span,
+.p31 > span,
+.p32 > span,
+.p33 > span,
+.p34 > span,
+.p35 > span,
+.p36 > span,
+.p37 > span,
+.p38 > span,
+.p39 > span,
+.p40 > span,
+.p41 > span,
+.p42 > span,
+.p43 > span,
+.p44 > span,
+.p45 > span,
+.p46 > span,
+.p47 > span,
+.p48 > span,
+.p49 > span {
   color: var(--poor);
 }
 
@@ -2156,46 +2156,46 @@ h1 {
 }
 
 /* Average */
-.p50>span,
-.p51>span,
-.p52>span,
-.p53>span,
-.p54>span,
-.p55>span,
-.p56>span,
-.p57>span,
-.p58>span,
-.p59>span,
-.p60>span,
-.p61>span,
-.p62>span,
-.p63>span,
-.p64>span,
-.p65>span,
-.p66>span,
-.p67>span,
-.p68>span,
-.p69>span,
-.p70>span,
-.p71>span,
-.p72>span,
-.p73>span,
-.p74>span,
-.p75>span,
-.p76>span,
-.p77>span,
-.p78>span,
-.p79>span,
-.p80>span,
-.p81>span,
-.p82>span,
-.p83>span,
-.p84>span,
-.p85>span,
-.p86>span,
-.p87>span,
-.p88>span,
-.p89>span {
+.p50 > span,
+.p51 > span,
+.p52 > span,
+.p53 > span,
+.p54 > span,
+.p55 > span,
+.p56 > span,
+.p57 > span,
+.p58 > span,
+.p59 > span,
+.p60 > span,
+.p61 > span,
+.p62 > span,
+.p63 > span,
+.p64 > span,
+.p65 > span,
+.p66 > span,
+.p67 > span,
+.p68 > span,
+.p69 > span,
+.p70 > span,
+.p71 > span,
+.p72 > span,
+.p73 > span,
+.p74 > span,
+.p75 > span,
+.p76 > span,
+.p77 > span,
+.p78 > span,
+.p79 > span,
+.p80 > span,
+.p81 > span,
+.p82 > span,
+.p83 > span,
+.p84 > span,
+.p85 > span,
+.p86 > span,
+.p87 > span,
+.p88 > span,
+.p89 > span {
   color: var(--average);
 }
 
@@ -2329,17 +2329,17 @@ h1 {
 }
 
 /* Good */
-.p90>span,
-.p91>span,
-.p92>span,
-.p93>span,
-.p94>span,
-.p95>span,
-.p96>span,
-.p97>span,
-.p98>span,
-.p99>span,
-.p100>span {
+.p90 > span,
+.p91 > span,
+.p92 > span,
+.p93 > span,
+.p94 > span,
+.p95 > span,
+.p96 > span,
+.p97 > span,
+.p98 > span,
+.p99 > span,
+.p100 > span {
   color: var(--good);
 }
 
@@ -2383,4 +2383,144 @@ h1 {
 .p99 .sl:before,
 .p100 .sl:before {
   background-color: var(--good-bg);
+}
+
+.step {
+  /* display: none; */
+}
+
+#step-1 {
+  /* display: block; */
+}
+
+#step-2,
+#step-3 {
+  text-align: left;
+}
+
+.next-btn {
+  display: none;
+}
+
+/* Custom Checkbox */
+.checkbox_label {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox_label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox_label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox_label input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox_label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox_label .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 3px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.htaccess-code-wrap {
+  position: relative;
+  background-color: rgb(0 0 0 / 10%);
+  padding: 50px 0;
+  border-radius: 5px;
+}
+
+.htaccess-code-wrap pre {
+  font-size: 20px;
+  transform: translateX(-150px);
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.htaccess-code-wrap span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 5px;
+  transition: 0.5s;
+  border: 1px solid #000;
+}
+
+.htaccess-code-wrap span:hover {
+  background-color: transparent;
+  color: #000;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.generate-report-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  font-family: "Poppins";
+  font-size: 14px;
+  text-transform: capitalize;
+  transition: 0.5s;
+}
+
+.generate-report-btn:hover {
+  background-color: #fff;
+  color: #000;
 }

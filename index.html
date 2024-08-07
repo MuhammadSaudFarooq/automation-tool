@@ -1,44 +1,148 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <!-- <meta
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <!-- <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
     /> -->
-    <!-- <meta
+  <!-- <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; connect-src 'self' https://www.googleapis.com;"
     /> -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data:; connect-src 'self' https://www.googleapis.com;"
-    />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; img-src 'self' data:; connect-src 'self' https://www.googleapis.com;" />
 
-    <link href="./styles.css" rel="stylesheet" />
-    <title>Automation Tool</title>
-  </head>
-  <body>
-    <div class="container" id="automation-tool">
-      <div class="row">
-        <div>
-          <h1>Automation Tool</h1>
+  <link href="./styles.css" rel="stylesheet" />
+  <title>Automation Tool</title>
+</head>
+
+<body>
+  <div class="container" id="automation-tool">
+    <div class="row">
+      <div>
+        <h1>Automation Tool</h1>
+      </div>
+      <form id="automation-form" action="#" method="post" enctype="multipart/form-data">
+        <input type="url" value="" placeholder="Enter webiste URL here..." />
+      </form>
+      <div class="performance-result">
+        <div class="step" id="step-1"></div>
+        <div class="step" id="step-2">
+          <div>
+            <div>
+              <h3>Updates</h3>
+            </div>
+            <div>
+              <label class="checkbox_label" for="wordpress_upd">
+                <span class="label_text">WordPres Update</span>
+                <input type="checkbox" name="wp_updates[]" id="wordpress_upd" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="themes_upd">
+                <span class="label_text">Themes Update</span>
+                <input type="checkbox" name="wp_updates[]" id="themes_upd" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="plugins_upd">
+                <span class="label_text">Plugins Update</span>
+                <input type="checkbox" name="wp_updates[]" id="plugins_upd" />
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
         </div>
-        <form
-          id="automation-form"
-          action="#"
-          method="post"
-          enctype="multipart/form-data"
-        >
-          <input type="url" value="" placeholder="Enter webiste URL here..." />
-        </form>
-        <div class="performance-result"></div>
+        <div class="step" id="step-3">
+          <div>
+            <div>
+              <h3>Security & vulnerability protection</h3>
+            </div>
+            <div>
+              <label class="checkbox_label" for="db_prefix">
+                <span class="label_text">Change the prefix in the database with random 5 digits prefix instead of
+                  default “wp_” (Setting
+                  available in All In One WP Security & Firewall)</span>
+                <input type="checkbox" name="security_updates[]" id="db_prefix" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="file_permission">
+                <span class="label_text">Correct File/Folder Permissions [Folders 755], [PHP files 644], [wp-config.php
+                  440], [index.php
+                  644] and [.htaccess 600] (Setting available in All In One WP Security & Firewall)</span>
+                <input type="checkbox" name="security_updates[]" id="file_permission" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="pingback">
+                <span class="label_text">Enabled Pingback Vulenerability Protection</span>
+                <input type="checkbox" name="security_updates[]" id="pingback" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="malware">
+                <span class="label_text">Install a WordPress security plugins Wordfence Security - Firewall & Malware
+                  Scan and All In One
+                  WP Security & Firewall.</span>
+                <input type="checkbox" name="security_updates[]" id="malware" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="wordfence">
+                <span class="label_text">Enable WAF from Wordfence and allow these IPs to bypass all rules
+                  110.38.26.98/32,
+                  221.132.113.174/32</span>
+                <input type="checkbox" name="security_updates[]" id="wordfence" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="wp_security">
+                <span class="label_text">Scan the site with Wordfence</span>
+                <input type="checkbox" name="security_updates[]" id="wp_security" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="xml-rpc">
+                <span class="label_text">Disable XML-RPC (Setting available in All In One WP Security & Firewall)</span>
+                <input type="checkbox" name="security_updates[]" id="xml-rpc" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox_label" for="htaccess">
+                <span class="label_text">Secure wp-includes by using mod_rewrite in the .htaccess file and put the
+                  following code # BEGIN
+                  WordPress and # END WordPress tags in the .htaccess file</span>
+                <input type="checkbox" name="security_updates[]" id="htaccess" />
+                <span class="checkmark"></span>
+              </label>
+              <div class="htaccess-code-wrap">
+                <span id="copy-btn">copy</span>
+                <pre id="code-block">
+                      # Block the include-only files.
+                      &lt;IfModule mod_rewrite.c&gt;
+                          RewriteEngine On
+                          RewriteBase /
+                          RewriteRule ^wp-admin/includes/ - [F,L]
+                          RewriteRule !^wp-includes/ - [S=3]
+                          RewriteRule ^wp-includes/[^/]+\.php$ - [F,L]
+                          RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
+                          RewriteRule ^wp-includes/theme-compat/ - [F,L]
+                      &lt;/IfModule&gt;
+                      # BEGIN WordPress
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step" id="step-4"></div>
+        <div class="step" id="step-5"></div>
+      </div>
+      <div class="buttons">
+        <button class="next-btn">Next</button>
+        <button class="generate-report-btn">Generate Report</button>
       </div>
     </div>
+  </div>
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./jQuery.min.js"></script>
-    <script src="./renderer.js"></script>
-  </body>
+  <!-- You can also require other files to run in this process -->
+  <script src="./jQuery.min.js"></script>
+  <script src="./jspdf.js"></script>
+  <script src="./renderer.js"></script>
+</body>
+
 </html>

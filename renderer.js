@@ -8,27 +8,7 @@
 
 $(document).ready(function () {
 
-    /* $.ajax({
-        url: 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://commubridge.com/&screenshot=true',
-        type: 'GET',
-        dataType: 'json',
-        timeout: 60000,
-        success: function (result) {
-            console.log('API Response:', result);
-            if (result.lighthouseResult && result.lighthouseResult.audits && result.lighthouseResult.audits['final-screenshot']) {
-                var imgData = result.lighthouseResult.audits['final-screenshot'].details.data;
-                console.log('Image Data:', imgData);
-                // $("#ss_img").attr('src', imgData);
-                $(`<img src="${imgData}" />`).insertAfter($("#imagePreview"));
-            } else {
-                console.log('Screenshot data not available in the response');
-            }
-        },
-        error: function (e) {
-            console.log("Error to fetch image preview.", e);
-        }
-    }); */
-
+    // Score Test
     $('#automation-form').submit(function (e) {
         e.preventDefault();
         let _this = $(this);
@@ -135,7 +115,7 @@ $(document).ready(function () {
                                                     </div>`;
 
                             // Render Result
-                            $('.performance-result').append(desktop_template, mobile_template);
+                            $('.performance-result #step-1').append(desktop_template, mobile_template);
                         },
                         error: function (error) {
                             let mobile_result = 0;
@@ -167,7 +147,7 @@ $(document).ready(function () {
                                                         </div>`;
 
                                 // Render Result
-                                $('.performance-result').append(mobile_template);
+                                $('.performance-result #step-1').append(mobile_template);
                             }
                         }
                     });
@@ -223,7 +203,7 @@ $(document).ready(function () {
                                                 </div>`;
 
                         // Render Result
-                        $('.performance-result').append(desktop_template, mobile_template);
+                        $('.performance-result #step-1').append(desktop_template, mobile_template);
                     }
 
                 }
@@ -233,6 +213,42 @@ $(document).ready(function () {
             $('.error-msg').remove();
             $(`<span class="error-msg">Invalid URL</span>`).insertAfter(form_input);
         }
+    });
+
+    // .htaccess code copy
+    $('#copy-btn').on('click', function () {
+        // Get the code content
+        let codeContent = $('#code-block').text().trim();
+
+        // Create a temporary textarea element
+        let tempTextarea = $('<textarea>');
+        tempTextarea.val(codeContent);
+        $('body').append(tempTextarea);
+
+        // Select the content and copy it
+        tempTextarea.select();
+        document.execCommand('copy');
+
+        // Remove the temporary textarea
+        tempTextarea.remove();
+
+        // Optional: Provide feedback to the user
+        $(this).text('copied');
+
+        setTimeout(() => {
+            $(this).text('copy');
+        }, 5000);
+    });
+
+    // Generate PDF
+    $('.generate-report-btn').on('click', function () {
+        let _this = $(this);
+        let doc = new jsPDF();
+        let date = new Date();
+        let file_name = 'Retainer_Progress_Sheet_' + date.getFullYear() + '_' + date.getMonth() + '_' + date.getDate() + '_' + date.getHours() + '_' + date.getMinutes() + '_' + date.getSeconds() + '.pdf';
+
+        // doc.text('Hello world!', 10, 10);
+        // doc.save(file_name);
     });
 });
 
